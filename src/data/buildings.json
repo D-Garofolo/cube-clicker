@@ -1,0 +1,36 @@
+{
+    "buildings": [
+        {
+            "name": "Point",
+            "baseCost": 25,
+            "description": "The basis of all cubes.",
+            "amount": 0,
+            "baseCps": 1,
+            "index": 0
+        },
+        {
+            "name": "Line",
+            "baseCost": 100,
+            "description": "Soon... there will be a square.",
+            "amount": 0,
+            "baseCps": 2.5,
+            "index": 2
+        },
+        {
+            "name": "Square",
+            "baseCost": 250,
+            "description": "Entering the second dimension!",
+            "amount": 0,
+            "baseCps": 5,
+            "index": 3
+        },
+        {
+            "name": "Cube",
+            "baseCost": 500,
+            "description": "It's the name of the game.",
+            "amount": 0,
+            "baseCps": 10,
+            "index": 4
+        }
+    ]
+}

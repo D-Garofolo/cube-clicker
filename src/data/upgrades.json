@@ -1,0 +1,25 @@
+{
+    "upgrades": [
+        {
+            "name": "Double Click",
+            "cost": 100,
+            "description": "Twice as many cubes!",
+            "building": "Cursor",
+            "multiplier": 2
+        },
+        {
+            "name": "Triple Click",
+            "cost": 200,
+            "description": "Really it's 4x, but who's counting?",
+            "building": "Cursor",
+            "multiplier": 2
+        },
+        {
+            "name": "Quadruple Click",
+            "cost": 500,
+            "description": "Really it's 8x, but who's counting?",
+            "building": "Cursor",
+            "multiplier": 2
+        }
+    ]
+}
