@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
+import { useInterval } from 'usehooks-ts' ;
 import cube from '../Cube.png';
 import { GlobalStoreContext } from '../store'
 
@@ -6,12 +7,9 @@ import { GlobalStoreContext } from '../store'
 const Cube = () => {
     const { store } = useContext(GlobalStoreContext);
 
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            store.incrementCount(store.cubesPerSecond);
-        }, 1000);
-        return () => clearInterval(intervalId);
-      }, [store]);
+    useInterval(() => {
+        store.incrementCount(store.cubesPerSecond);
+      }, 1000);
 
 
     function handleCubeClick(event) {
