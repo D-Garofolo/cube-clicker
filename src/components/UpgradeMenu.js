@@ -6,7 +6,7 @@ import UpgradeCard from './UpgradeCard'
 const UpgradeMenu = () => {
     const { store } = useContext(GlobalStoreContext);
 
-    let upgrades = store.upgradeCards.map((item) => (
+    let upgrades = store.upgradeCards.filter((item) => item.bought == false && item.unlocked == true).map((item) => (
         <Grid item xs={3} sx={{ border: 1 }}>
             <UpgradeCard
                 key={item.name}
@@ -17,7 +17,7 @@ const UpgradeMenu = () => {
 
     return (
         <div className="UpgradeMenu">
-            <Grid container spacing={1} sx={{height: 150}}>
+            <Grid container spacing={1} sx={{height: 300}}>
                 {upgrades}
             </Grid>
         </div>

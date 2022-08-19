@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { StrictMode, useContext, useEffect, useState } from 'react';
 import { GlobalStoreContext } from '../store'
 
 const BuildingCard = (props) => {
@@ -8,7 +8,17 @@ const BuildingCard = (props) => {
     async function handleUpgrade(event) {
         if (store.count >= buildingInfo.baseCost) {
             buildingInfo.amount++
-            await store.purchaseBuilding(buildingInfo)
+            buildingInfo.baseCost = Math.round(buildingInfo.baseCost * 1.1)
+
+            let upgradeID = buildingInfo.ID + buildingInfo.amount.toString() 
+            let upgrade = store.upgradeCards.filter((item) => {return item.ID == upgradeID})
+            if (upgrade.length > 0) {
+                upgrade = upgrade[0]
+                upgrade.unlocked = true
+            }
+
+            await store.purchaseBuilding({buildingInfo: buildingInfo, upgradeInfo: upgrade})
+            
         }
     }
 
@@ -19,6 +29,9 @@ const BuildingCard = (props) => {
             </div>
             <div>
                 {buildingInfo.baseCost}
+            </div>
+            <div>
+                {buildingInfo.amount}
             </div>
         </div>
     );

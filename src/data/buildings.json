@@ -1,6 +1,7 @@
 {
     "buildings": [
         {
+            "ID": "PO",
             "name": "Point",
             "baseCost": 25,
             "description": "The basis of all cubes.",
@@ -9,6 +10,7 @@
             "index": 0
         },
         {
+            "ID": "LI",
             "name": "Line",
             "baseCost": 100,
             "description": "Soon... there will be a square.",
@@ -17,6 +19,7 @@
             "index": 2
         },
         {
+            "ID": "SQ",
             "name": "Square",
             "baseCost": 250,
             "description": "Entering the second dimension!",
@@ -25,6 +28,7 @@
             "index": 3
         },
         {
+            "ID": "CU",
             "name": "Cube",
             "baseCost": 500,
             "description": "It's the name of the game.",
