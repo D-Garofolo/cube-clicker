@@ -5,4 +5,4 @@ making a simple project that can easily be expanded into a full stack program.
 
 # Future Work
 
-Immediate attention is going to be put onto the backend, connecting this to a database so users can save their data.
+Immediate attention is going to be put onto the backend, connecting this to a database so users can save their data, as well as adding more style to the page, adding hover boxes so users will know exactly what building is being upgraded, how much it helps, etc.
