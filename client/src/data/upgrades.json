@@ -1,0 +1,214 @@
+{
+    "upgrades": [
+        {
+            "ID": "CL0",
+            "name": "Double Click",
+            "cost": 10,
+            "description": "Twice as many cubes!",
+            "building": "Cursor",
+            "multiplier": 2,
+            "unlocked": true,
+            "bought": false
+        },
+        {
+            "ID": "CL100",
+            "name": "Triple Click",
+            "cost": 20,
+            "description": "Really it's 4x, but who's counting?",
+            "building": "Cursor",
+            "multiplier": 2,
+            "unlocked": true,
+            "bought": false
+        },
+        {
+            "ID": "CL500",
+            "name": "Quadruple Click",
+            "cost": 50,
+            "description": "Really it's 8x, but who's counting?",
+            "building": "Cursor",
+            "multiplier": 2,
+            "unlocked": true,
+            "bought": false
+        },
+        {
+            "ID": "PO5",
+            "name": "Snake Eyes",
+            "cost": 100,
+            "description": "Two ones!",
+            "building": "Point",
+            "multiplier": 2,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "PO25",
+            "name": "Nat 20",
+            "cost": 500,
+            "description": "All these points, now we're getting somewhere.",
+            "building": "Point",
+            "multiplier": 2,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "PO50",
+            "name": "Yahtzee!",
+            "cost": 1000,
+            "description": "Kerplinko.",
+            "building": "Point",
+            "multiplier": 2,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "LI5",
+            "name": "Quotation Marks",
+            "cost": 500,
+            "description": "Quoth the raven...",
+            "building": "Line",
+            "multiplier": 2,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "LI25",
+            "name": "Hashtag",
+            "cost": 2500,
+            "description": "Cause it's four lines at once.",
+            "building": "Line",
+            "multiplier": 2,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "LI50",
+            "name": "Rorsharch Test",
+            "cost": 5000,
+            "description": "Lots of lines, lots of blobs, what does it mean?",
+            "building": "Line",
+            "multiplier": 2,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "SQ5",
+            "name": "Square-Squared",
+            "cost": 1000,
+            "description": "That's a lot of squares.",
+            "building": "Square",
+            "multiplier": 2,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "SQ25",
+            "name": "4x4",
+            "cost": 7500,
+            "description": "4 sides by 4 times by 4 squares...",
+            "building": "Square",
+            "multiplier": 2,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "SQ50",
+            "name": "Super Square",
+            "cost": 15000,
+            "description": "Hero of the day!",
+            "building": "Square",
+            "multiplier": 2,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "CU5",
+            "name": "Cube-Squared",
+            "cost": 5000,
+            "description": "That isn't even possible!",
+            "building": "Cube",
+            "multiplier": 2,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "CU25",
+            "name": "Sugar Cube",
+            "cost": 20000,
+            "description": "Call that a hypercube.",
+            "building": "Cube",
+            "multiplier": 2,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "CU50",
+            "name": "Cube King",
+            "cost": 50000,
+            "description": "You've done it! The most expensive upgrade in the game!",
+            "building": "Cube",
+            "multiplier": 2,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "TS5",
+            "name": "Pink Tesseract",
+            "cost": 10000,
+            "description": "",
+            "building": "Tesseract",
+            "multiplier": 2,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "TS10",
+            "name": "Pink Tesseract",
+            "cost": 50000,
+            "description": "",
+            "building": "Tesseract",
+            "multiplier": 2,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "TS25",
+            "name": "Super Tesseract",
+            "cost": 100000,
+            "description": "",
+            "building": "Tesseract",
+            "multiplier": 2,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "HC5",
+            "name": "Pink Hypercube",
+            "cost": 25000,
+            "description": "",
+            "building": "Hypercube",
+            "multiplier": 2,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "TS10",
+            "name": "HyperfocusHypercube",
+            "cost": 150000,
+            "description": "",
+            "building": "Hypercube",
+            "multiplier": 2,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "TS25",
+            "name": "Cube of all Cubes!",
+            "cost": 500000,
+            "description": "",
+            "building": "Hypercube",
+            "multiplier": 2,
+            "unlocked": false,
+            "bought": false
+        }
+    ]
+}
