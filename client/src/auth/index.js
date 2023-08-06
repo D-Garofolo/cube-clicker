@@ -6,7 +6,8 @@ export const AuthContext = createContext({});
 export const AuthActionType = {
     LOGIN_USER: "LOGIN_USER",
     LOGOUT_USER: "LOGOUT_USER",
-    REGISTER_USER: "REGISTER_USER"
+    REGISTER_USER: "REGISTER_USER",
+    UPDATE_USER: "UPDATE_USER"
 }
 
 function AuthContextProvider(props) {
@@ -34,6 +35,12 @@ function AuthContextProvider(props) {
                 return setAuth({
                     user: null,
                     loggedIn: false
+                })
+            }
+            case AuthActionType.UPDATE_USER: {
+                return setAuth({
+                    user: payload.user,
+                    loggedIn: true
                 })
             }
             default:
@@ -65,6 +72,23 @@ function AuthContextProvider(props) {
             if (response.status === 200) {
                 authReducer({
                     type: AuthActionType.LOGIN_USER,
+                    payload: {
+                        user: response.data.user
+                    }
+                })
+            } 
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+
+    auth.updateUser = async function(userData) {
+        try {
+            const response = await api.updateUser(userData);
+            if (response.status === 200) {
+                authReducer({
+                    type: AuthActionType.UPDATE_USER,
                     payload: {
                         user: response.data.user
                     }

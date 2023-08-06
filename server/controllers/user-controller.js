@@ -28,32 +28,6 @@ createUser = async (req, res) => {
         })
 }
 
-updateUser = async (req, res) => {
-    const userInfo = req.body;
-    user.findOne({name: userInfo.name}, (error, userToUpdate) => {
-        if (error) {
-            return res.status(404).json({
-                error,
-                message: 'Failed to find user.'
-            })
-        }
-
-        userToUpdate
-            .save()
-            .then(() => {
-                return res.status(200).json({
-                    success: true,
-                    user: userToUpdate
-                })
-            })
-            .catch(error => {
-                return res.status(400).json({
-                    error,
-                    message: 'Failed to update user.'
-                })
-            })
-    })
-}
 
 deleteUser = async (req, res) => {
     const userInfo = req.body;
@@ -98,6 +72,44 @@ findUser = async (req, res) => {
         console.log(err);
         return res.status(400).json({
             success: false,
+            error: err
+        })
+    }
+}
+
+updateUser = async (req, res) => {
+    try {
+        const name = req.body.name;
+        const password = req.body.password;
+        const foundUser = await user.findOne({name: name});
+        if (foundUser) {
+            foundUser.count = req.body.count;
+            foundUser.CpS = req.body.CpS;
+            foundUser.CpC = req.body.CpC;
+            foundUser.upgrades = req.body.upgrades;
+            foundUser.buildings = req.body.buildings;
+
+            let updatedUser = await foundUser.save();
+            if (updatedUser) {
+                return res.status(200).json({
+                    success: true,
+                    user: updatedUser
+                })
+            }
+            return res.status(400).json({
+                success: false,
+                message: 'Failed to update user.'
+            })
+        
+        }
+        return res.status(400).json({
+            success: false
+        })
+    }
+    catch (err) {
+        console.log(err);
+        return res.status(400).json({
+            success: false, 
             error: err
         })
     }

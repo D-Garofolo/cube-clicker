@@ -34,6 +34,30 @@ const Cube = () => {
         });
         setLoginOpen(false);
     }
+    const handleSave = () => {
+        let upgradeCardsToSave = store.upgradeCards.filter((item) => item.bought);
+        let upgradesToSave = [];
+        upgradeCardsToSave.map(function (item) {
+            upgradesToSave.push(item.ID);
+        })
+        let buildingsToSave = [];
+        store.buildingCards.map((item) => {
+            buildingsToSave.push({
+                name: item.ID,
+                quantity: item.amount,
+                nextCost: item.baseCost
+            })
+        })
+        auth.updateUser({
+            name: auth.user.name,
+            password: auth.user.password,
+            count: store.count,
+            CpS: store.cubesPerSecond,
+            CpC: store.cubesPerClick,
+            upgrades: upgradesToSave,
+            buildings: buildingsToSave
+        })
+    }
     
     const [loginOpen, setLoginOpen] = React.useState(false);
     const [nameInput, setNameInput] = React.useState('');
@@ -59,6 +83,11 @@ const Cube = () => {
         store.incrementCount(store.cubesPerClick);
     }
 
+    function handleStoreDisplay(event) {
+        console.log(store);
+        console.log(auth);
+    }
+
     useInterval(() => {
         store.incrementCount(store.cubesPerSecond);
       }, 1000);
@@ -72,7 +101,8 @@ const Cube = () => {
             <div>
                 <Button style={{display: auth.loggedIn ? "none" : "inline"}} onClick={handleRegisterOpen}>Register</Button>
                 <Button style={{display: auth.loggedIn ? "none" : "inline"}} onClick={handleLoginOpen}>Login</Button>
-                <Button style={{display: auth.loggedIn ? "inline" : "none"}}>Save</Button>
+                <Button onClick={handleStoreDisplay}>Display Store</Button>
+                <Button style={{display: auth.loggedIn ? "inline" : "none"}} onClick={handleSave}>Save</Button>
                 <Button style={{display: auth.loggedIn ? "inline" : "none"}} onClick={handleLogout}>Logout</Button>
             </div>
             <Modal open={open} onClose={handleClose}>
