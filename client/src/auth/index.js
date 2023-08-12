@@ -66,7 +66,7 @@ function AuthContextProvider(props) {
         }
     }
 
-    auth.loginUser = async function(userData) {
+    auth.loginUser = async function(userData, store) {
         try {
             const response = await api.findUser(userData);
             if (response.status === 200) {
@@ -76,6 +76,7 @@ function AuthContextProvider(props) {
                         user: response.data.user
                     }
                 })
+                store.loadUser(response.data.user);
             } 
         }
         catch (err) {
@@ -85,6 +86,7 @@ function AuthContextProvider(props) {
 
     auth.updateUser = async function(userData) {
         try {
+            console.log(userData);
             const response = await api.updateUser(userData);
             if (response.status === 200) {
                 authReducer({

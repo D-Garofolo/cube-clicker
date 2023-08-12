@@ -86,8 +86,16 @@ updateUser = async (req, res) => {
             foundUser.count = req.body.count;
             foundUser.CpS = req.body.CpS;
             foundUser.CpC = req.body.CpC;
-            foundUser.upgrades = req.body.upgrades;
-            foundUser.buildings = req.body.buildings;
+            foundUser.unlocked = req.body.unlocked;
+            foundUser.bought = req.body.bought;
+            foundUser.buildings = [];
+            req.body.buildings.map((building) => {
+                foundUser.buildings.push({
+                    name: building.name,
+                    quantity: building.amount,
+                    nextCost: building.baseCost
+                })
+            })
 
             let updatedUser = await foundUser.save();
             if (updatedUser) {

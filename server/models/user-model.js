@@ -8,7 +8,8 @@ const userSchema = new Schema(
         count: {type: Number, required: false, default: 1},
         CpS: {type: Number, required: false, default: 0},
         CpC: {type: Number, required: false, default: 1},
-        upgrades: {type: [String], required: false},
+        unlocked: {type: [String], required: false},
+        bought: {type: [String], required: false},
         buildings: [{
             name: {type: String},
             quantity: {type: Number},

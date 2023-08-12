@@ -31,31 +31,31 @@ const Cube = () => {
         auth.loginUser({
             name: nameInput,
             password: passwordInput
-        });
+        }, store);
         setLoginOpen(false);
     }
+
     const handleSave = () => {
         let upgradeCardsToSave = store.upgradeCards.filter((item) => item.bought);
-        let upgradesToSave = [];
+        let upgradesBought = [];
         upgradeCardsToSave.map(function (item) {
-            upgradesToSave.push(item.ID);
+            upgradesBought.push(item.ID);
         })
-        let buildingsToSave = [];
-        store.buildingCards.map((item) => {
-            buildingsToSave.push({
-                name: item.ID,
-                quantity: item.amount,
-                nextCost: item.baseCost
-            })
+        upgradeCardsToSave = store.upgradeCards.filter((item) => !item.bought && item.unlocked);
+        let upgradesUnlocked = [];
+        upgradeCardsToSave.map(function (item) {
+            upgradesUnlocked.push(item.ID);
         })
+
         auth.updateUser({
             name: auth.user.name,
             password: auth.user.password,
             count: store.count,
             CpS: store.cubesPerSecond,
             CpC: store.cubesPerClick,
-            upgrades: upgradesToSave,
-            buildings: buildingsToSave
+            unlocked: upgradesUnlocked,
+            bought: upgradesBought,
+            buildings: store.buildingCards
         })
     }
     

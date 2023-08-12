@@ -9,7 +9,8 @@ export const GlobalStoreActionType = {
     CHANGE_CPC: "CHANGE_CPC",
     BUY_UPGRADE: "BUY_UPGRADE",
     BUY_BUILDING: "BUY_BUILDING",
-    BUY_BUILDING_UPGRADE: "BUY_BUILDING_UPGRADE"
+    BUY_BUILDING_UPGRADE: "BUY_BUILDING_UPGRADE",
+    SET_USER: "SET_USER"
 }
 
 let upgrades = []
@@ -98,6 +99,15 @@ function GlobalStoreContextProvider(props) {
                     buildingCards: store.buildingCards.map((item, i) => i == payload.buildingInfo.index ? payload.buildingInfo : item)
                 })
             }
+            case GlobalStoreActionType.SET_USER: {
+                return setStore({
+                    count: payload.count,
+                    cubesPerClick: payload.cubesPerClick,
+                    cubesPerSecond: payload.cubesPerSecond,
+                    upgradeCards: payload.upgradeCards,
+                    buildingCards: payload.buildingCards
+                })
+            }
             
             default: 
                 return store;
@@ -137,6 +147,34 @@ function GlobalStoreContextProvider(props) {
             type: GlobalStoreActionType.BUY_BUILDING_UPGRADE,
             payload: info
         })
+    }
+
+    store.loadUser = async function (user) {
+        if (user.CpC != 1 || user.CpS != 0) {
+            let updatedUser = {
+                count: user.count,
+                cubesPerClick: user.CpC,
+                cubesPerSecond: user.CpS,
+                upgradeCards: upgrades,
+                buildingCards: buildings
+            }
+            let unlockedUpgrades = new Set(user.unlocked);
+            let boughtUpgrades = new Set(user.bought);
+            updatedUser.upgradeCards.map((upgrade) => {
+                upgrade.unlocked = (boughtUpgrades.has(upgrade.ID) || unlockedUpgrades.has(upgrade.ID));
+                upgrade.bought = (boughtUpgrades.has(upgrade.ID))
+            });
+
+            updatedUser.buildingCards.map((building, i) => {
+                building.baseCost = user.buildings[i].nextCost;
+                building.amount = user.buildings[i].quantity;
+            });
+            
+            storeReducer({
+                type: GlobalStoreActionType.SET_USER,
+                payload: updatedUser
+            })
+        }
     }
 
     return (
