@@ -28,6 +28,24 @@
   color: #61dafb;
 }
 
+#login-modal {
+  position: absolute;
+  left: 40%;
+  top: 40%;
+}
+
+#login-box {
+  background-color: white;
+  border-style: solid;
+  border-width: thin;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

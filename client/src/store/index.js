@@ -9,6 +9,7 @@ export const GlobalStoreActionType = {
     CHANGE_CPC: "CHANGE_CPC",
     BUY_UPGRADE: "BUY_UPGRADE",
     BUY_BUILDING: "BUY_BUILDING",
+    SELL_BUILDING: "SELL_BUILDING",
     BUY_BUILDING_UPGRADE: "BUY_BUILDING_UPGRADE",
     SET_USER: "SET_USER"
 }
@@ -90,6 +91,15 @@ function GlobalStoreContextProvider(props) {
                     buildingCards: store.buildingCards.map((item, i) => i == payload.buildingInfo.index ? payload.buildingInfo : item)
                 })
             }
+            case GlobalStoreActionType.SELL_BUILDING: {
+                return setStore({
+                    count: store.count + Math.round(payload.buildingInfo.baseCost/1.1 * 0.65),
+                    cubesPerClick: store.cubesPerClick,
+                    cubesPerSecond: store.cubesPerSecond - payload.buildingInfo.baseCps,
+                    upgradeCards: store.upgradeCards.map((item) => item.ID == payload.upgradeInfo.ID ? payload.upgradeInfo: item),
+                    buildingCards: store.buildingCards.map((item, i) => i == payload.buildingInfo.index ? payload.buildingInfo : item)
+                })
+            }
             case GlobalStoreActionType.BUY_BUILDING_UPGRADE: {
                 return setStore({
                     count: store.count - payload.upgradeInfo.cost,
@@ -140,6 +150,13 @@ function GlobalStoreContextProvider(props) {
             type: GlobalStoreActionType.BUY_BUILDING,
             payload: info
         });
+    }
+
+    store.sellBuilding = async function (info) {
+        storeReducer({
+            type: GlobalStoreActionType.SELL_BUILDING,
+            payload: info
+        })
     }
 
     store.purchaseBuildingUpgrade = async function (info) {

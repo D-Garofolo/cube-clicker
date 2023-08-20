@@ -4,6 +4,7 @@ import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import cube from '../Cube.png';
+import Grid from '@mui/material/Grid';
 import { AuthContext } from '../auth'
 import { GlobalStoreContext } from '../store'
 
@@ -12,14 +13,23 @@ const Cube = () => {
     const { store } = useContext(GlobalStoreContext);
     const { auth } = useContext(AuthContext);
     const [open, setOpen] = React.useState(false);
+    const [loginOpen, setLoginOpen] = React.useState(false);
+    const [nameInput, setNameInput] = React.useState('');
+    const [passwordInput, setPasswordInput] = React.useState('');
 
     const handleRegisterOpen = () => {
         setOpen(true);
     }
+
+    const handleLoginOpen = () => {
+        setLoginOpen(true);
+    }
+
     const handleClose = () => {
         setLoginOpen(false);
         setOpen(false);
     }
+
     const handleRegister = () => {
         auth.registerUser({
             name: nameInput,
@@ -27,6 +37,7 @@ const Cube = () => {
         });
         setOpen(false);
     }
+
     const handleLogin = () => {
         auth.loginUser({
             name: nameInput,
@@ -35,12 +46,25 @@ const Cube = () => {
         setLoginOpen(false);
     }
 
+    const handleLogout = () => {
+        auth.logoutUser();
+    }
+
+    const handleChange = (event) => {
+        setNameInput(event.target.value);
+    }
+
+    const handlePasswordChange = (event) => {
+        setPasswordInput(event.target.value);
+    }
+
     const handleSave = () => {
         let upgradeCardsToSave = store.upgradeCards.filter((item) => item.bought);
         let upgradesBought = [];
         upgradeCardsToSave.map(function (item) {
             upgradesBought.push(item.ID);
         })
+
         upgradeCardsToSave = store.upgradeCards.filter((item) => !item.bought && item.unlocked);
         let upgradesUnlocked = [];
         upgradeCardsToSave.map(function (item) {
@@ -58,34 +82,9 @@ const Cube = () => {
             buildings: store.buildingCards
         })
     }
-    
-    const [loginOpen, setLoginOpen] = React.useState(false);
-    const [nameInput, setNameInput] = React.useState('');
-    const [passwordInput, setPasswordInput] = React.useState('');
-
-    const handleLoginOpen = () => {
-        setLoginOpen(true);
-    }
-
-    const handleLogout = () => {
-        auth.logoutUser();
-    }
-
-    const handlePasswordChange = (event) => {
-        setPasswordInput(event.target.value);
-    }
-
-    const handleChange = (event) => {
-        setNameInput(event.target.value);
-    }
 
     function handleCubeClick(event) {
         store.incrementCount(store.cubesPerClick);
-    }
-
-    function handleStoreDisplay(event) {
-        console.log(store);
-        console.log(auth);
     }
 
     useInterval(() => {
@@ -101,23 +100,34 @@ const Cube = () => {
             <div>
                 <Button style={{display: auth.loggedIn ? "none" : "inline"}} onClick={handleRegisterOpen}>Register</Button>
                 <Button style={{display: auth.loggedIn ? "none" : "inline"}} onClick={handleLoginOpen}>Login</Button>
-                <Button onClick={handleStoreDisplay}>Display Store</Button>
                 <Button style={{display: auth.loggedIn ? "inline" : "none"}} onClick={handleSave}>Save</Button>
                 <Button style={{display: auth.loggedIn ? "inline" : "none"}} onClick={handleLogout}>Logout</Button>
             </div>
-            <Modal open={open} onClose={handleClose}>
-                <div>
-                    <TextField onChange={handleChange} label="Name"/>
-                    <TextField onChange={handlePasswordChange} label="Password"/>
-                    <Button onClick={handleRegister}>Register</Button>
-                </div>
+            <Modal id="login-modal" open={open} onClose={handleClose}>
+                <Grid id='login-box'>
+                    <Grid item id='login-item' xs={12}>
+                        <TextField onChange={handleChange} fullWidth label="Name"/>
+                    </Grid>
+                    <Grid item id='login-item' xs={12}>
+                        <TextField onChange={handlePasswordChange} fullWidth label="Password"/>
+                    </Grid>
+                    <Grid item id='login-item' xs={12}>
+                        <Button onClick={handleRegister}>Register</Button>
+                    </Grid>
+                </Grid>
             </Modal> 
-            <Modal open={loginOpen} onClose={handleClose}>
-                <div>
-                    <TextField onChange={handleChange} label="Name"/>
-                    <TextField onChange={handlePasswordChange} label="Password"/>
-                    <Button onClick={handleLogin}>Login</Button>
-                </div>
+            <Modal id="login-modal" open={loginOpen} onClose={handleClose}>
+                <Grid id='login-box'>
+                    <Grid item id='login-item' xs={12}>
+                        <TextField onChange={handleChange} fullWidth label="Name"/>
+                    </Grid>
+                    <Grid item id='login-item' xs={12}>
+                        <TextField onChange={handlePasswordChange} fullWidth label="Password"/>
+                    </Grid>
+                    <Grid item id='login-item' xs={12}>
+                        <Button onClick={handleLogin}>Login</Button>
+                    </Grid>
+                </Grid>
             </Modal> 
         </div>
     );

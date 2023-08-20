@@ -28,7 +28,6 @@ createUser = async (req, res) => {
         })
 }
 
-
 deleteUser = async (req, res) => {
     const userInfo = req.body;
     await user.findOneAndDelete({name: userInfo.name}, (error, userToDelete) => {

@@ -15,7 +15,7 @@
             "baseCost": 100,
             "description": "Soon... there will be a square.",
             "amount": 0,
-            "baseCps": 2.5,
+            "baseCps": 5,
             "index": 2
         },
         {
@@ -24,7 +24,7 @@
             "baseCost": 250,
             "description": "Entering the second dimension!",
             "amount": 0,
-            "baseCps": 5,
+            "baseCps": 10,
             "index": 3
         },
         {
@@ -33,7 +33,7 @@
             "baseCost": 500,
             "description": "It's the name of the game.",
             "amount": 0,
-            "baseCps": 10,
+            "baseCps": 25,
             "index": 4
         },
         {
@@ -48,7 +48,7 @@
         {
             "ID": "HC",
             "name": "Hypercube",
-            "baseCost": 1000,
+            "baseCost": 10000,
             "description": "Entering INFINITY!",
             "amount": 0,
             "baseCps": 100,

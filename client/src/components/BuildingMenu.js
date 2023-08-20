@@ -15,7 +15,6 @@ const BuildingMenu = () => {
         </Grid>
     ))
 
-
     return (
         <div className="BuildingMenu">
             <Grid container spacing={1} sx={{height: 600}}>
