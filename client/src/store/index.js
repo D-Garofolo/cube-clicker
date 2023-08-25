@@ -11,7 +11,8 @@ export const GlobalStoreActionType = {
     BUY_BUILDING: "BUY_BUILDING",
     SELL_BUILDING: "SELL_BUILDING",
     BUY_BUILDING_UPGRADE: "BUY_BUILDING_UPGRADE",
-    SET_USER: "SET_USER"
+    SET_USER: "SET_USER",
+    PRESTIGE: "PRESTIGE"
 }
 
 let upgrades = []
@@ -47,7 +48,9 @@ function GlobalStoreContextProvider(props) {
         cubesPerClick: 1,
         cubesPerSecond: 0,
         upgradeCards: upgrades,
-        buildingCards: buildings
+        buildingCards: buildings,
+        prestigeLevel: 1.00,
+        totalCubes: 0
     });
 
 
@@ -61,7 +64,9 @@ function GlobalStoreContextProvider(props) {
                     cubesPerClick: store.cubesPerClick,
                     cubesPerSecond: store.cubesPerSecond,
                     upgradeCards: store.upgradeCards,
-                    buildingCards: store.buildingCards
+                    buildingCards: store.buildingCards,
+                    prestigeLevel: store.prestigeLevel,
+                    totalCubes: store.totalCubes + payload
                 });
             }
             case GlobalStoreActionType.CHANGE_CPC: {
@@ -70,7 +75,9 @@ function GlobalStoreContextProvider(props) {
                     cubesPerClick: store.cubesPerClick * payload,
                     cubesPerSecond: store.cubesPerSecond,
                     upgradeCards: store.upgradeCards,
-                    buildingCards: store.buildingCards
+                    buildingCards: store.buildingCards,
+                    prestigeLevel: store.prestigeLevel,
+                    totalCubes: store.totalCubes
                 })
             }
             case GlobalStoreActionType.BUY_UPGRADE: {
@@ -79,7 +86,9 @@ function GlobalStoreContextProvider(props) {
                     cubesPerClick: store.cubesPerClick * payload.multiplier,
                     cubesPerSecond: store.cubesPerSecond,
                     upgradeCards: store.upgradeCards.map((item) => item.ID == payload.ID ? payload : item),
-                    buildingCards: store.buildingCards
+                    buildingCards: store.buildingCards,
+                    prestigeLevel: store.prestigeLevel,
+                    totalCubes: store.totalCubes
                 })
             }
             case GlobalStoreActionType.BUY_BUILDING: {
@@ -88,7 +97,9 @@ function GlobalStoreContextProvider(props) {
                     cubesPerClick: store.cubesPerClick,
                     cubesPerSecond: store.cubesPerSecond + payload.buildingInfo.baseCps,
                     upgradeCards: store.upgradeCards.map((item) => item.ID == payload.upgradeInfo.ID ? payload.upgradeInfo: item),
-                    buildingCards: store.buildingCards.map((item, i) => i == payload.buildingInfo.index ? payload.buildingInfo : item)
+                    buildingCards: store.buildingCards.map((item, i) => i == payload.buildingInfo.index ? payload.buildingInfo : item),
+                    prestigeLevel: store.prestigeLevel,
+                    totalCubes: store.totalCubes
                 })
             }
             case GlobalStoreActionType.SELL_BUILDING: {
@@ -97,7 +108,9 @@ function GlobalStoreContextProvider(props) {
                     cubesPerClick: store.cubesPerClick,
                     cubesPerSecond: store.cubesPerSecond - payload.buildingInfo.baseCps,
                     upgradeCards: store.upgradeCards.map((item) => item.ID == payload.upgradeInfo.ID ? payload.upgradeInfo: item),
-                    buildingCards: store.buildingCards.map((item, i) => i == payload.buildingInfo.index ? payload.buildingInfo : item)
+                    buildingCards: store.buildingCards.map((item, i) => i == payload.buildingInfo.index ? payload.buildingInfo : item),
+                    prestigeLevel: store.prestigeLevel,
+                    totalCubes: store.totalCubes
                 })
             }
             case GlobalStoreActionType.BUY_BUILDING_UPGRADE: {
@@ -106,7 +119,9 @@ function GlobalStoreContextProvider(props) {
                     cubesPerClick: store.cubesPerClick,
                     cubesPerSecond: store.cubesPerSecond + (payload.buildingInfo.amount * payload.buildingInfo.baseCps / payload.upgradeInfo.multiplier),
                     upgradeCards: store.upgradeCards.map((item) => item.ID == payload.upgradeInfo.ID ? payload.upgradeInfo: item),
-                    buildingCards: store.buildingCards.map((item, i) => i == payload.buildingInfo.index ? payload.buildingInfo : item)
+                    buildingCards: store.buildingCards.map((item, i) => i == payload.buildingInfo.index ? payload.buildingInfo : item),
+                    prestigeLevel: store.prestigeLevel,
+                    totalCubes: store.totalCubes
                 })
             }
             case GlobalStoreActionType.SET_USER: {
@@ -115,7 +130,20 @@ function GlobalStoreContextProvider(props) {
                     cubesPerClick: payload.cubesPerClick,
                     cubesPerSecond: payload.cubesPerSecond,
                     upgradeCards: payload.upgradeCards,
-                    buildingCards: payload.buildingCards
+                    buildingCards: payload.buildingCards,
+                    prestigeLevel: payload.prestigeLevel,
+                    totalCubes: payload.totalCubes
+                })
+            }
+            case GlobalStoreActionType.PRESTIGE: {
+                return setStore({
+                    count: 0,
+                    cubesPerClick: 1,
+                    cubesPerSecond: 0,
+                    upgradeCards: payload.upgrades,
+                    buildingCards: payload.buildings,
+                    prestigeLevel: payload.prestigeLevel,
+                    totalCubes: store.totalCubes
                 })
             }
             
@@ -192,6 +220,45 @@ function GlobalStoreContextProvider(props) {
                 payload: updatedUser
             })
         }
+    }
+
+    store.prestige = async function (info) {
+        let newUpgrades = []
+        upgradeList["upgrades"].map(function(item) {        
+            newUpgrades.push({ 
+                "ID": item.ID,
+                "name": item.name,
+                "cost": item.cost,
+                "description": item.description,
+                "building": item.building,
+                "multiplier": item.multiplier,
+                "unlocked": item.unlocked,
+                "bought": item.bought
+            });
+        });
+
+        let newBuildings = []
+        buildingList["buildings"].map(function(item) {        
+            newBuildings.push({ 
+                "ID": item.ID,
+                "name": item.name,
+                "baseCost": item.baseCost,
+                "description": item.description,
+                "amount": item.amount,
+                "baseCps": item.baseCps
+            });
+        });
+
+        let payload = {
+            upgrades: newUpgrades,
+            buildings: newBuildings,
+            prestigeLevel: info
+        }
+
+        storeReducer({
+            type: GlobalStoreActionType.PRESTIGE,
+            payload: payload
+        })
     }
 
     return (

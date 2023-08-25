@@ -14,8 +14,14 @@ const Cube = () => {
     const { auth } = useContext(AuthContext);
     const [open, setOpen] = React.useState(false);
     const [loginOpen, setLoginOpen] = React.useState(false);
+    const [prestigeOpen, setPrestigeOpen] = React.useState(false);
     const [nameInput, setNameInput] = React.useState('');
     const [passwordInput, setPasswordInput] = React.useState('');
+    const totalCps = Math.floor(store.cubesPerSecond * store.prestigeLevel)
+    
+    const handleStore = () => {
+        console.log(store);
+    }
 
     const handleRegisterOpen = () => {
         setOpen(true);
@@ -25,7 +31,12 @@ const Cube = () => {
         setLoginOpen(true);
     }
 
+    const handlePrestigeOpen = () => {
+        setPrestigeOpen(true);
+    }
+
     const handleClose = () => {
+        setPrestigeOpen(false);
         setLoginOpen(false);
         setOpen(false);
     }
@@ -83,20 +94,29 @@ const Cube = () => {
         })
     }
 
+    const handlePrestige = () => {
+        let prestigeLevel = 1 + Math.floor(Math.sqrt(store.totalCubes / 100))/100;
+        console.log(prestigeLevel);
+        store.prestige(prestigeLevel);
+        setPrestigeOpen(false);
+    }
+
     function handleCubeClick(event) {
         store.incrementCount(store.cubesPerClick);
     }
 
     useInterval(() => {
-        store.incrementCount(store.cubesPerSecond);
+        store.incrementCount(Math.floor(store.cubesPerSecond * store.prestigeLevel));
       }, 1000);
 
     return (
         <div className="Cube">
             <div>Cubes: {store.count}</div>
             <div>Cubes per click: {store.cubesPerClick}</div>
-            <div>Cubes per second: {store.cubesPerSecond}</div>
+            <div>Cubes per second: {totalCps}</div>
             <img src={cube} onClick={handleCubeClick} width="300" height="300" />
+            <div/>
+            <Button onClick={handlePrestigeOpen}>Prestige</Button>
             <div>
                 <Button style={{display: auth.loggedIn ? "none" : "inline"}} onClick={handleRegisterOpen}>Register</Button>
                 <Button style={{display: auth.loggedIn ? "none" : "inline"}} onClick={handleLoginOpen}>Login</Button>
@@ -129,6 +149,16 @@ const Cube = () => {
                     </Grid>
                 </Grid>
             </Modal> 
+            <Modal id="login-modal" open={prestigeOpen} onClose={handleClose}>
+                <Grid id='login-box'>
+                    <Grid item id='login-item' xs={12}>
+                        Warning. Prestiging is a nonreversible action. You currently have {store.totalCubes} cubes. By prestiging, you will earn {Math.floor(Math.sqrt(store.totalCubes / 100)) - (store.prestigeLevel*100 - 100)} prestige levels, each adding 1% to your cube power.
+                    </Grid>
+                    <Grid item id='login-item' xs={12}>
+                        <Button onClick={handlePrestige}>Prestige</Button>
+                    </Grid>
+                </Grid>
+            </Modal>
         </div>
     );
 }
