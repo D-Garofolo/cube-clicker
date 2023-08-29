@@ -12,7 +12,7 @@
         {
             "ID": "LI",
             "name": "Line",
-            "baseCost": 100,
+            "baseCost": 150,
             "description": "Soon... there will be a square.",
             "amount": 0,
             "baseCps": 5,
@@ -21,7 +21,7 @@
         {
             "ID": "SQ",
             "name": "Square",
-            "baseCost": 250,
+            "baseCost": 400,
             "description": "Entering the second dimension!",
             "amount": 0,
             "baseCps": 10,
@@ -30,7 +30,7 @@
         {
             "ID": "CU",
             "name": "Cube",
-            "baseCost": 500,
+            "baseCost": 1200,
             "description": "It's the name of the game.",
             "amount": 0,
             "baseCps": 25,
@@ -39,7 +39,7 @@
         {
             "ID": "TS",
             "name": "Tesseract",
-            "baseCost": 2500,
+            "baseCost": 3000,
             "description": "Entering the 4th Dimension.",
             "amount": 0,
             "baseCps": 50,
@@ -48,7 +48,7 @@
         {
             "ID": "HC",
             "name": "Hypercube",
-            "baseCost": 10000,
+            "baseCost": 7500,
             "description": "Entering INFINITY!",
             "amount": 0,
             "baseCps": 100,

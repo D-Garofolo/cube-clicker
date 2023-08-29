@@ -102,11 +102,18 @@ const Cube = () => {
     }
 
     function handleCubeClick(event) {
-        store.incrementCount(store.cubesPerClick);
+        store.incrementCount({num: store.cubesPerClick, upgradeInfo: null});
     }
 
     useInterval(() => {
-        store.incrementCount(Math.floor(store.cubesPerSecond * store.prestigeLevel));
+        let upgrade = store.upgradeCards.filter((item) => {return item.building == 'CpS' && item.unlocked == false})
+        if (upgrade.length > 0 && upgrade[0].cost * 5 <= store.totalCubes) {
+            upgrade[0].unlocked = true
+        }
+        else {
+            upgrade[0] = null;
+        }
+        store.incrementCount({num: Math.floor(store.cubesPerSecond * store.prestigeLevel), upgradeInfo: upgrade[0]});
       }, 1000);
 
     return (

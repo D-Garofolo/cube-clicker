@@ -60,13 +60,13 @@ function GlobalStoreContextProvider(props) {
             // LIST UPDATE OF ITS NAME
             case GlobalStoreActionType.CHANGE_COUNT: {
                 return setStore({
-                    count: store.count + payload,
+                    count: store.count + payload.num,
                     cubesPerClick: store.cubesPerClick,
                     cubesPerSecond: store.cubesPerSecond,
-                    upgradeCards: store.upgradeCards,
+                    upgradeCards: store.upgradeCards.map((item) => payload.upgradeInfo != null && item.ID == payload.upgradeInfo.ID ? payload.upgradeInfo : item),
                     buildingCards: store.buildingCards,
                     prestigeLevel: store.prestigeLevel,
-                    totalCubes: store.totalCubes + payload
+                    totalCubes: store.totalCubes + payload.num
                 });
             }
             case GlobalStoreActionType.CHANGE_CPC: {

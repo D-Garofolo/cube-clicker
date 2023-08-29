@@ -63,7 +63,17 @@
         {
             "ID": "PO50",
             "name": "Yahtzee!",
-            "cost": 1000,
+            "cost": 5000,
+            "description": "Doubles CpS earned by Point.",
+            "building": "Point",
+            "multiplier": 2,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "PO100",
+            "name": "Pointillism",
+            "cost": 750000,
             "description": "Doubles CpS earned by Point.",
             "building": "Point",
             "multiplier": 2,
@@ -83,7 +93,7 @@
         {
             "ID": "LI25",
             "name": "Hashtag",
-            "cost": 2500,
+            "cost": 4000,
             "description": "Doubles CpS earned by Line.",
             "building": "Line",
             "multiplier": 2,
@@ -93,7 +103,17 @@
         {
             "ID": "LI50",
             "name": "Rorsharch Test",
-            "cost": 5000,
+            "cost": 50000,
+            "description": "Doubles CpS earned by Line.",
+            "building": "Line",
+            "multiplier": 2,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "LI100",
+            "name": "Scratch Marks",
+            "cost": 5000000,
             "description": "Doubles CpS earned by Line.",
             "building": "Line",
             "multiplier": 2,
@@ -103,7 +123,7 @@
         {
             "ID": "SQ5",
             "name": "Square-Squared",
-            "cost": 1000,
+            "cost": 1200,
             "description": "Doubles CpS earned by Square.",
             "building": "Square",
             "multiplier": 2,
@@ -113,7 +133,7 @@
         {
             "ID": "SQ25",
             "name": "4x4",
-            "cost": 7500,
+            "cost": 10000,
             "description": "Doubles CpS earned by Square.",
             "building": "Square",
             "multiplier": 2,
@@ -123,7 +143,17 @@
         {
             "ID": "SQ50",
             "name": "Super Square",
-            "cost": 15000,
+            "cost": 120000,
+            "description": "Doubles CpS earned by Square.",
+            "building": "Square",
+            "multiplier": 2,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "SQ100",
+            "name": "Grid",
+            "cost": 15000000,
             "description": "Doubles CpS earned by Square.",
             "building": "Square",
             "multiplier": 2,
@@ -143,7 +173,7 @@
         {
             "ID": "CU25",
             "name": "Sugar Cube",
-            "cost": 20000,
+            "cost": 30000,
             "description": "Doubles CpS earned by Cube.",
             "building": "Cube",
             "multiplier": 2,
@@ -153,7 +183,17 @@
         {
             "ID": "CU50",
             "name": "Cube King",
-            "cost": 50000,
+            "cost": 500000,
+            "description": "Doubles CpS earned by Cube.",
+            "building": "Cube",
+            "multiplier": 2,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "CU100",
+            "name": "Cube Army",
+            "cost": 40000000,
             "description": "Doubles CpS earned by Cube.",
             "building": "Cube",
             "multiplier": 2,
@@ -162,7 +202,7 @@
         },
         {
             "ID": "TS5",
-            "name": "Pink Tesseract",
+            "name": "Bronze Tesseract",
             "cost": 10000,
             "description": "Doubles CpS earned by Tesseract.",
             "building": "Tesseract",
@@ -172,8 +212,8 @@
         },
         {
             "ID": "TS25",
-            "name": "Pink Tesseract",
-            "cost": 50000,
+            "name": "Silver Tesseract",
+            "cost": 60000,
             "description": "Doubles CpS earned by Tesseract.",
             "building": "Tesseract",
             "multiplier": 2,
@@ -182,8 +222,18 @@
         },
         {
             "ID": "TS50",
-            "name": "Super Tesseract",
-            "cost": 100000,
+            "name": "Gold Tesseract",
+            "cost": 1000000,
+            "description": "Doubles CpS earned by Tesseract.",
+            "building": "Tesseract",
+            "multiplier": 2,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "TS100",
+            "name": "Platinum Tesseract",
+            "cost": 100000000,
             "description": "Doubles CpS earned by Tesseract.",
             "building": "Tesseract",
             "multiplier": 2,
@@ -192,7 +242,7 @@
         },
         {
             "ID": "HC5",
-            "name": "Pink Hypercube",
+            "name": "Hyper-cubed",
             "cost": 25000,
             "description": "Doubles CpS earned by Hypercube.",
             "building": "Hypercube",
@@ -202,8 +252,8 @@
         },
         {
             "ID": "HC25",
-            "name": "HyperfocusHypercube",
-            "cost": 150000,
+            "name": "Hyperfocus Hypercube",
+            "cost": 200000,
             "description": "Doubles CpS earned by Hypercube.",
             "building": "Hypercube",
             "multiplier": 2,
@@ -213,10 +263,70 @@
         {
             "ID": "HC50",
             "name": "Cube of all Cubes!",
-            "cost": 500000,
+            "cost": 2500000,
             "description": "Doubles CpS earned by Hypercube.",
             "building": "Hypercube",
             "multiplier": 2,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "HC100",
+            "name": "Cube of CoaC!",
+            "cost": 300000000,
+            "description": "Doubles CpS earned by Hypercube.",
+            "building": "Hypercube",
+            "multiplier": 2,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "CP1",
+            "name": "Cool Cube",
+            "cost": 2000,
+            "description": "Adds a flat 1% multiplier to CpS.",
+            "building": "CpS",
+            "multiplier": 1,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "CP2",
+            "name": "Strawberry Cube",
+            "cost": 20000,
+            "description": "Adds a flat 1% multiplier to CpS.",
+            "building": "CpS",
+            "multiplier": 1,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "CP3",
+            "name": "Earth Cube",
+            "cost": 200000,
+            "description": "Adds a flat 2% multiplier to CpS.",
+            "building": "CpS",
+            "multiplier": 1,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "CP4",
+            "name": "Purple Cube",
+            "cost": 2000000,
+            "description": "Adds a flat 2% multiplier to CpS.",
+            "building": "CpS",
+            "multiplier": 1,
+            "unlocked": false,
+            "bought": false
+        },
+        {
+            "ID": "CP5",
+            "name": "Ancient Cube",
+            "cost": 20000000,
+            "description": "Adds a flat 3% multiplier to CpS.",
+            "building": "CpS",
+            "multiplier": 1,
             "unlocked": false,
             "bought": false
         }
